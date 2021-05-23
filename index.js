@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = 'NDU0NDM1ODUxNTQ4NzUzOTMy.WxnIXg.jXkBMI2WYPZXuBCRpPDlxdsaRnk';
+const config = require('./config.json');
 const adminCode = 2765420;
 const adminCodeTries = 5;
 const fs = require('fs');
@@ -96,21 +96,6 @@ function removeContent(list, begin, end, target) {
     return `The content "${target}" that you were looking for does not exist in the list. `;
 }
 
-function changeToken(newToken) {
-    if (adminCodeTries === 0) {
-        console.log('You have entered the wrong code 5 times. Goodbye.');
-    } else {
-        var code = window.prompt("Enter the admin code: ", 0);
-        if (code === adminCode) {
-            token = newToken;
-        } else {
-            console.log('The admin code is incorrect.');
-            adminCodeTries--;
-            changeToken(newToken);
-        }
-    }
-}
-
 function showDashboard() {
     console.log('Welcome to Nooby Bot Control Panel!');
     console.log('1. Notifications');
@@ -126,5 +111,5 @@ function showDashboard() {
     }
 }
 
-client.login(token);
+client.login(config.token);
 // Last line
