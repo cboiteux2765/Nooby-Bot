@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
-const adminCode = 2765420;
-const adminCodeTries = 5;
 const fs = require('fs');
 
 client.commands = new Discord.Collection();
@@ -17,42 +15,43 @@ for (const file of commandFiles) {
 const prefix = 'nooby ';
 let facts = ['Breh', '6 times 9 plus 6 plus 9 equals 69!'];
 let greets = ['Howdy!', 'Hi!', 'Hello!', 'Sup!', 'Greetings'];
-let fails = ['https://media.tenor.com/videos/1417936746a4dc1bd4f0e0a38227d1e7/mp4'];
-let roasts = ['You eat more than you live.', 'It seems that only your body is growing, not the brain...', 'Get a life.', 'You\'re using me because your family left you.', 'You spend a lot of time with me instead of getting straight A\'s.'];
+let fails = ['https://tenor.com/view/slick-fall-ouch-fail-oops-gif-4402351'];
+let roasts = ['You eat more than you live.', 'It seems that only your body is growing, not the brain...', 'Get a life.', 'You\'re using me because your family left you.', 'You spend a lot of time with me instead of getting straight A\'s.', 'Your mom is so dumb because she brought a spoon the the Super Bowl.', 'You should be spending more time with your friends than me.'];
 
 client.once('ready', () => {
     console.log('Hello hello!');
 })
 
 client.on('message', message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) {
-        return;
-    }
-
     const args = message.content.slice(prefix.length).split(/ + /);
     const command = args.shift().toLowerCase();
 
-    if (command === 'brain') {
-        client.commands.get('brain').execute(message, args);
-    } else if (command === 'fact') {
-        client.commands.get('fact').execute(message, args, facts);
-    } else if (command === 'hello' || command === 'hi') {
-        client.commands.get('hello').execute(message, args, greets);
-    } else if (command === 'roast') {
-        client.commands.get('roast').execute(message, args, roasts);
-    } else if (command === 'bye') {
-
-    } else if (command === 'help') {
-        message.channel.send('Command descriptions in development.');
-        const trimmed = [];
-        for (const file of commandFiles) {
-            var comm = prefix;
-            comm += file.replace('.js', '');
-            trimmed.push(comm);
+    if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) {
+        return;
+    } 
+        
+        if (command === 'brain') {
+            client.commands.get('brain').execute(message, args);
+        } else if (command === 'fact') {
+            client.commands.get('fact').execute(message, args, facts);
+        } else if (command === 'hello' || command.toLowerCase() === 'hi') {
+            client.commands.get('hello').execute(message, args, greets);
+        } else if (command === 'roast') {
+            client.commands.get('roast').execute(message, args, roasts);
+        } else if (command === 'fail') {
+            client.commands.get('fail').execute(message, args, fails);
+        } else if (command === 'help') {
+            message.channel.send('Command descriptions in development.');
+            const trimmed = [];
+            for (const file of commandFiles) {
+                var comm = prefix;
+                comm += file.replace('.js', '');
+                trimmed.push(comm);
+            }
+            message.channel.send(trimmed);
+        } else if (command === 'math sucks') {
+            client.commands.get('math sucks').execute(message, args);
         }
-        message.channel.send(trimmed);
-
-    }
 })
 
 function answerQuestion(question) {
