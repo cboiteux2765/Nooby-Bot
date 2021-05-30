@@ -24,6 +24,7 @@ let motivations = ['If you do your homework I\'ll buy you a family-sized cookie.
 let roasts = ['You eat more than you live.', 'It seems that only your body is growing, not the brain...', 'Get a life.', 'You\'re using me because your family left you.', 'You spend a lot of time with me instead of getting straight A\'s.', 'Your mom is so dumb because she brought a spoon to the Super Bowl.', 'You should be spending more time with your friends than me.'];
 
 client.once('ready', () => {
+    console.log(`Logged in as ${client.user.tag}`);
     console.log('Hello hello!');
 })
 
@@ -41,7 +42,7 @@ client.on('message', message => {
         if (message.content.toLowerCase().indexOf('clement') >= 0) {
             message.channel.send('Bless the maker!');
         }
-        if (message.content.indexOf('math sucks') >= 0 || message.content.indexOf('mathsucks') >= 0) {
+        if (message.content.toLowerCase().indexOf('math sucks') >= 0 || message.content.toLowerCase().indexOf('mathsucks') >= 0) {
             client.commands.get('math sucks').execute(message, args);
         }
     } else {
@@ -51,10 +52,12 @@ client.on('message', message => {
             client.commands.get('fact').execute(message, args, facts);
         } else if (command === 'hello' || command === 'hi') {
             client.commands.get('hello').execute(message, args, greets);
+        } else if (command === 'math sucks' || command === 'mathsucks') {
+            client.commands.get('math sucks').execute(message, args);
         } else if (command === 'roast') {
             client.commands.get('roast').execute(message, args, roasts);
         } else if (command === 'fail') {
-            client.commands.get('fail').execute(message, args, fails);
+            message.channel.send(getData('fail'));
         } else if (command === 'help') {
             const trimmed = [];
             for (const file of commandFiles) {
@@ -81,62 +84,15 @@ client.on('message', message => {
             client.commands.get('meditate').execute(message, args);
         } else if (command === 'bless') {
 
+        } else if (command === 'trigger') {
+
+        } else if (command === 'detect lie' || command === 'detectlie') {
+            client.commands.get('detectlie').execute(message, args);
+        } else if (command === 'delete') {
+            client.commands.get('delete').execute(message, args, number);
         }
     }
 })
-
-function answerQuestion(question) {
-    const words = ['do', 'you', 'like'];
-    var intelligible = true;
-    for (let i = 0; i < words.length; i++) {
-        if (question.indexOf(words[i]) >= 0) {
-            intelligible = false;
-            break;
-        }
-    }
-    if (intelligible) {
-
-    } else {
-        return "That is an unintelligible question.";
-    }
-}
-
-
-function removeContent(list, begin, end, target) {
-    // binary search
-
-    var mid = (begin + end)/2;
-    if (list[mid] > target) {
-        end = mid - 1;
-        return removeFact(list, begin, end, target);
-    }
-
-    if (list[mid] < target) {
-        begin = mid + 1;
-        return removeFact(list, begin, end, target);
-    }
-
-    if (list[mid] === target) {
-        list.pop(mid);
-    }
-
-    return `The content "${target}" that you were looking for does not exist in the list. `;
-}
-
-function showDashboard() {
-    console.log('Welcome to Nooby Bot Control Panel!');
-    console.log('1. Notifications');
-    console.log('2. Change something');
-    var choice = window.prompt('', 1);
-    switch (choice) {
-        case 1:
-            
-            break;
-        
-        case 2:
-            break;
-    }
-}
 
 client.login(config.token);
 // Last line
