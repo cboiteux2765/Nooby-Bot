@@ -21,7 +21,10 @@ let farewells = ['Farewell, my friend!', ':wave:', 'Bye! Have a good day!', 'Cya
 let fortunes = ['You will be wealthy in the future.', 'You will end up like a bum.', 'You will be the next Elon Musk.', 'Good things will happen if you give to people who need.', 'You will score all 1\'s on your AP tests.', 'You will score all 5\'s on your AP tests.', 'You will be forgiven of your sins.'];
 let wisdoms = ['Confucius said, admitting that you don\'t know something is knowledge.'];
 let motivations = ['If you do your homework I\'ll buy you a family-sized cookie.', 'Dream big. Work hard. Win big.','You got this!!!', 'If you do your homework you are smart and motivated.', 'Study hard and you will achieve your dreams of working in your favorite job.'];
-let roasts = ['You eat more than you live.', 'It seems that only your body is growing, not the brain...', 'Get a life.', 'You\'re using me because your family left you.', 'You spend a lot of time with me instead of getting straight A\'s.', 'Your mom is so dumb because she brought a spoon to the Super Bowl.', 'You should be spending more time with your friends than me.'];
+let roasts = ['You eat more than you live.', 'It seems that only your body is growing, not the brain...', 'Get a life.', 'You\'re using me because your family left you.', 'You spend a lot of time with me instead of getting straight A\'s.', 'Your mom is so dumb because she brought a spoon to the Super Bowl.'];
+let confessions = ['I peed on the classroom carpet in 1st grade.', 'I beat up a first grader in kindergarten.', 'I have destroyed tons of ceramics in my life.'];
+let tips = ['Study hard! It will land you a good job.', 'Obey the laws.', 'Control your temper.', 'Be respectful.', 'Don\'t lie about important matters.', 'Always learn new things every day.'];
+let stuffToDo = ['Read a book.', 'Learn more about a subject.', 'Go play a game or 2 of any video game!', 'Go out for a walk!', 'Feed your pet.', 'Do your homework.', 'Do a hobby.', 'Learn a new skill.', 'Sleep.', 'Briefly check social media.', 'Do some chores.', 'Eat a snack.', 'Listen to some music.', 'Complete your Driver\'s Ed course.', 'Watch YouTube.', 'Get a LinkedIn profile.'];
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -45,6 +48,10 @@ client.on('message', message => {
         if (message.content.toLowerCase().indexOf('math sucks') >= 0 || message.content.toLowerCase().indexOf('mathsucks') >= 0) {
             client.commands.get('math sucks').execute(message, args);
         }
+        if (message.content.toLowerCase().indexOf('im bored') >= 0 || message.content.toLowerCase().indexOf('i\'m bored') >= 0) {
+            var random = Math.floor(Math.random()*stuffToDo.length);
+            message.reply(stuffToDo[random]);
+        }
     } else {
         if (command === 'brain') {
             client.commands.get('brain').execute(message, args);
@@ -57,7 +64,7 @@ client.on('message', message => {
         } else if (command === 'roast') {
             client.commands.get('roast').execute(message, args, roasts);
         } else if (command === 'fail') {
-            message.channel.send(getData('fail'));
+            client.commands.get('fail').execute(message, args, fails);
         } else if (command === 'help') {
             const trimmed = [];
             for (const file of commandFiles) {
@@ -90,6 +97,10 @@ client.on('message', message => {
             client.commands.get('detectlie').execute(message, args);
         } else if (command === 'delete') {
             client.commands.get('delete').execute(message, args, number);
+        } else if(command === 'confess') {
+            client.commands.get('confess').execute(message, args, confessions);
+        } else if (command === 'tip') {
+            client.commands.get('tip').execute(message, args, tips);
         }
     }
 })
