@@ -39,9 +39,6 @@ client.on('message', message => {
         if (message.content.toLowerCase().indexOf('grind') >= 0) {
             message.channel.send('letsgooooooo!');
         }
-        if (message.content.toLowerCase().indexOf('clement') >= 0) {
-            message.channel.send('Bless the maker!');
-        }
         if (message.content.toLowerCase().indexOf('math sucks') >= 0 || message.content.toLowerCase().indexOf('mathsucks') >= 0) {
             client.commands.get('math sucks').execute(message, args);
         }
@@ -86,10 +83,6 @@ client.on('message', message => {
             client.commands.get('wisdom').execute(message, args, wisdoms);
         } else if (command === 'meditate') {
             client.commands.get('meditate').execute(message, args);
-        } else if (command === 'bless') {
-
-        } else if (command === 'trigger') {
-
         } else if (command === 'detect lie' || command === 'detectlie') {
             client.commands.get('detectlie').execute(message, args);
         } else if (command === 'delete') {
