@@ -25,7 +25,10 @@ var roasts = ['You eat more than you live.', 'It seems that only your body is gr
 var confessions = ['I eat ice cream like a 5-year-old.','I peed on the classroom carpet in 1st grade.', 'I beat up a first grader in kindergarten.', 'I have destroyed tons of ceramics in my life.'];
 var tips = ['Study hard! It will land you a good job.', 'Obey the laws.', 'Control your temper.', 'Be respectful.', 'Don\'t lie about important matters.', 'Always learn new things every day.'];
 var stuffToDo = ['Read a book.', 'Learn more about a subject.', 'Go play a game or 2 of any video game!', 'Go out for a walk!', 'Feed your pet.', 'Do your homework.', 'Do a hobby.', 'Learn a new skill.', 'Sleep.', 'Briefly check social media.', 'Do some chores.', 'Eat a snack.', 'Listen to some music.', 'Complete your Driver\'s Ed course.', 'Watch YouTube.', 'Get a LinkedIn profile.'];
-var codingLangs = ['Java', 'Python', 'JavaScript', 'TypeScript', 'Scala', 'Rust', 'Assembly', 'HTML/CSS', 'C', 'C++', 'C#', 'PHP', 'SQL', 'Kotlin', 'Go', 'Dart', 'Swift', 'Objective-C', 'Shell', 'R', 'Ruby'];
+var codingLangs = ['Java', 'Python', 'JavaScript', 'Scala', 'Rust', 'Assembly', 'HTML/CSS', 'C', 'C++', 'C#', 'PHP', 'SQL', 'Kotlin', 'Go', 'Dart', 'Swift', 'Objective-C', 'Shell', 'R', 'Ruby'];
+var codingTopics = ['Web Dev', 'Mobile App Dev', 'GUIs', 'Desktop app dev', 'Game dev', 'Electronics programming', 'Data science', 'Command Line', 'Linux', 'Cybersecurity', 'Data Structures', 'Operating Systems', 'Computer Architecture'];
+var colleges = ['Harvard','Caltech', 'MIT', 'Stanford', 'UCLA', 'UC Berkeley', 'Johns Hopkins', 'Georgia Tech', 'Rice', 'Carnegie Mellon', 'U Washington', 'Penn State', 'Cornell', 'Princeton', 'Dartmouth', 'UC Irvine', 'UC Davis', 'San Jose State', 'Santa Clara', 'U Michigan', 'U Wisconsin Madison', 'Texas A&M', 'UT Austin', 'UT Dallas', 'Dartmouth', 'Yale', 'Columbia', 'UPenn', 'ASU', 'UC San Diego', 'UC Santa Barbara', 'UC Santa Cruz', 'UC Riverside', 'UC Merced', 'Cal Poly SLO', 'San Diego State', 'Purdue', 'USC', 'Vanderbilt', 'Duke', 'Tufts', 'U Chicago', 'UIUC', 'Case Western Reserve', 'RPI', 'Rutgers', 'Ohio State', 'Colorado School of Mines', 'CU Boulder', 'Northwestern', 'Northeastern', 'Harvey Mudd', 'Claremont McKenna', 'UT Arlington', 'Temple', 'WashU', 'Pitzer', 'Pomona College', 'Boston University', 'Brown'];
+var apClasses = ['AP Calculus AB', 'AP Calculus BC', 'AP Chinese Language and Culture', 'AP Chemistry', 'AP Computer Science A', 'AP Computer Science Principles', 'AP English Language and Composition', 'AP English Literature and Composition', 'AP French Language and Culture', 'AP German Language and Culture', 'AP Biology', 'AP Statistics', 'AP Art History', 'AP Latin', 'AP Japanese Language and Culture', 'AP Psychology', 'AP Human Geography', 'AP Studio Art: Drawing', 'AP Studio Art 2D', 'AP Studio Art 3D', 'AP Seminar', 'AP Research', 'AP Macroeconomics', 'AP Microeconomics', 'AP Music Theory', 'AP World History: Modern', 'AP European History', 'AP United States History', 'AP United States Government and Politics', 'AP Comparative Government and Politics', 'AP Physics 1', 'AP Physics 2', 'AP Physics C: Electricity and Magnetism', 'AP Physics C: Mechanics', 'AP Environmental Science', 'AP Spanish Language and Culture', 'AP Spanish Literature'];
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -96,6 +99,16 @@ client.on('message', message => {
             client.commands.get('coinflip').crusstyCoin(message);
         } else if (command === 'codinglang') {
             client.commands.get('codinglang').execute(message, codingLangs);
+        } else if (command === 'codingtopic') {
+            client.commands.get('codingtopic').execute(message, codingTopics);
+        } else if (command === 'college') {
+            client.commands.get('college').execute(message, args, colleges);
+        } else if (command === 'collegeshotgun') {
+            client.commands.get('collegeshotgun').execute(message, args, colleges);
+        } else if (command === 'sat') {
+            client.commands.get('sat').execute(message);
+        } else if (command === 'apscores') {
+            client.commands.get('apscores').execute(message, apClasses);
         }
     }
 });
