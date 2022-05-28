@@ -1,7 +1,7 @@
 module.exports = {
     name: 'coinflip',
     description: 'Flip a coin.',
-    execute(message, args) {
+    execute(message) {
         let rand = Math.floor(Math.random()*2);
         if (rand == 0) {
             message.channel.send('Heads!');

@@ -1,7 +1,7 @@
 module.exports = {
     name: 'roast',
     description: 'ooooo roasted',
-    execute(message, args, list) {
+    execute(message, list) {
         var random = Math.floor(Math.random()*(list.length));
         message.channel.send(list[random]);
     }

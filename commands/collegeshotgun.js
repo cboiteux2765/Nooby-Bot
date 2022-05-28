@@ -1,7 +1,7 @@
 module.exports = {
     name: 'collegeshotgun',
     description: 'See several college decisions at once.',
-    execute(message, args, list) {
+    execute(message, list) {
         let temp = [];
         for (let i = 0; i < list.length; i++) {
             temp.push(list[i]);
