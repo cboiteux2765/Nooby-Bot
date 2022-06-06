@@ -113,4 +113,4 @@ client.on('message', message => {
     }
 });
 
-client.login(config.token);
+client.login("NDU0NDM1ODUxNTQ4NzUzOTMy.WxnIXg.GavC89q6fVsCVqhrDQ8P4NcrJTA");
