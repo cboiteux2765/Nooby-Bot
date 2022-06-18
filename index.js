@@ -6,6 +6,11 @@ const fs = require('fs');
 client.commands = new Discord.Collection();
 client.descriptions = new Discord.Collection();
 
+client.once('ready', () => {
+    console.log(`Logged in as ${client.user.tag}`);
+    console.log('Hello hello!');
+});
+
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
@@ -29,11 +34,6 @@ let codingLangs = ['Java', 'Python', 'JavaScript', 'Scala', 'Rust', 'Assembly', 
 let codingTopics = ['Web Dev', 'Mobile App Dev', 'GUIs', 'Desktop app dev', 'Game dev', 'Electronics programming', 'Data science', 'Command Line', 'Linux', 'Cybersecurity', 'Data Structures', 'Operating Systems', 'Computer Architecture'];
 let colleges = ['Harvard', 'Stony Brook', 'Caltech', 'MIT', 'Stanford', 'UCLA', 'UC Berkeley', 'Johns Hopkins', 'Georgia Tech', 'Rice', 'Carnegie Mellon', 'U Washington', 'Penn State', 'Cornell', 'Princeton', 'Dartmouth', 'UC Irvine', 'UC Davis', 'San Jose State', 'Santa Clara', 'U Michigan', 'U Wisconsin Madison', 'Texas A&M', 'UT Austin', 'UT Dallas', 'Dartmouth', 'Yale', 'Columbia', 'UPenn', 'ASU', 'UC San Diego', 'UC Santa Barbara', 'UC Santa Cruz', 'UC Riverside', 'UC Merced', 'Cal Poly SLO', 'San Diego State', 'Purdue', 'USC', 'Vanderbilt', 'Duke', 'Tufts', 'U Chicago', 'UIUC', 'Case Western Reserve', 'RPI', 'Rutgers', 'Ohio State', 'Colorado School of Mines', 'CU Boulder', 'Northwestern', 'Northeastern', 'Harvey Mudd', 'Claremont McKenna', 'UT Arlington', 'Temple', 'WashU', 'Pitzer', 'Pomona College', 'Boston University', 'Brown', 'Cal Poly Pomona', 'CSU Monterey Bay', 'CSU Sacramento', 'UNC Chapel Hill'];
 let apClasses = ['AP Calculus AB', 'AP Calculus BC', 'AP Chinese Language and Culture', 'AP Chemistry', 'AP Computer Science A', 'AP Computer Science Principles', 'AP English Language and Composition', 'AP English Literature and Composition', 'AP French Language and Culture', 'AP German Language and Culture', 'AP Biology', 'AP Statistics', 'AP Art History', 'AP Latin', 'AP Japanese Language and Culture', 'AP Psychology', 'AP Human Geography', 'AP Studio Art: Drawing', 'AP Studio Art 2D', 'AP Studio Art 3D', 'AP Seminar', 'AP Research', 'AP Macroeconomics', 'AP Microeconomics', 'AP Music Theory', 'AP World History: Modern', 'AP European History', 'AP United States History', 'AP United States Government and Politics', 'AP Comparative Government and Politics', 'AP Physics 1', 'AP Physics 2', 'AP Physics C: Electricity and Magnetism', 'AP Physics C: Mechanics', 'AP Environmental Science', 'AP Spanish Language and Culture', 'AP Spanish Literature'];
-
-client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
-    console.log('Hello hello!');
-});
 
 client.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ + /);
